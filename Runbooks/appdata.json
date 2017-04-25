@@ -1,6 +1,4 @@
 {
-"ResourceGrpName":"TravelGamificationProd",
-"DataFactoryName":"CernerProdDataFactory",
-"CodeFolder":".",
-"Subscriptionid":"77fcfed0-829f-446a-9634-0cd4295f6c04"
+"ResourceGrpName":"CernerPOCData",
+"DataFactoryName":"DataFactoryCernerPOC"
 }
