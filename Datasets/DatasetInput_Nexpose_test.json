@@ -1,0 +1,56 @@
+{
+    "name": "DatasetInput_Nexpose_test",
+    "properties": {
+        "structure": [
+            {
+                "name": "site_name",
+                "type": "String"
+            },
+            {
+                "name": "ip_address",
+                "type": "String"
+            },
+            {
+                "name": "host_name",
+                "type": "String"
+            },
+            {
+                "name": "mac_address",
+                "type": "String"
+            },
+            {
+                "name": "operating_system",
+                "type": "String"
+            },
+            {
+                "name": "description",
+                "type": "String"
+            },
+            {
+                "name": "scan_finished",
+                "type": "String"
+            },
+            {
+                "name": "exportdate",
+                "type": "String"
+            },
+            {
+                "name": "Console",
+                "type": "String"
+            }
+        ],
+        "published": false,
+        "type": "SqlServerTable",
+        "linkedServiceName": "LinkedService_Nexpose",
+        "typeProperties": {
+            "tableName": "[Nexpose].[Assets]"
+        },
+        "availability": {
+            "frequency": "Day",
+            "interval": 1,
+            "offset": "06:00:00"
+        },
+        "external": true,
+        "policy": {}
+    }
+}
