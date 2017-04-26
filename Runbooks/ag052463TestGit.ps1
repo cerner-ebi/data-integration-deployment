@@ -6,19 +6,22 @@
     if(!$Cred) { 
         Throw "Could not find an Automation Credential Asset named '${CredentialAssetName}'. Make sure you have created one in this Automation Account." 
     } 
-
+    echo("After checking creds")
     #Connect to your Azure Account        
     Add-AzureRmAccount -Credential $Cred
-
+    echo("After adding creds to azure")
     Get-AzureRmSubscription -SubscriptionName "CernerCorpDataIntDev" | Select-AzureRmSubscription
 
     [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
     $client = New-Object System.Net.WebClient
-    $client.Headers.Add("Authorization","token f1d79eabf3312792c763d2eeda5795282b7db872")
+    #$client.Headers.Add("Authorization","token f1d79eabf3312792c763d2eeda5795282b7db872")
+    $client.Headers.Add("client_id","e2ae349315ce04c9c51a")
+    $client.Headers.Add("client_secret","237fd9f518173f1929b64eeeee9698a2bc4b9cc0")
     $client.Headers.Add("Accept","application/vnd.github.v3.raw")
-
+    echo("After creating client")
 
     $stream = $client.OpenRead("https://github.cerner.com/api/v3/repos/Data-And-Integration/data-integration/contents/projects/CMS/appdata.json?ref=development")
+    echo("After openinig $stream")
     $reader = New-Object System.IO.StreamReader($stream)
     $stringcontent = $reader.ReadToEnd()
     $stringcontent
