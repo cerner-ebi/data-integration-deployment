@@ -14,14 +14,14 @@
 
     [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
     $client = New-Object System.Net.WebClient
-    #$client.Headers.Add("Authorization","token f1d79eabf3312792c763d2eeda5795282b7db872")
-    $client.Headers.Add("client_id","e2ae349315ce04c9c51a")
-    $client.Headers.Add("client_secret","237fd9f518173f1929b64eeeee9698a2bc4b9cc0")
+    $client.Headers.Add("Authorization","token f1d79eabf3312792c763d2eeda5795282b7db872")
+    #$client.Headers.Add("client_id","e2ae349315ce04c9c51a")
+    #$client.Headers.Add("client_secret","237fd9f518173f1929b64eeeee9698a2bc4b9cc0")
     $client.Headers.Add("Accept","application/vnd.github.v3.raw")
     echo("After creating client")
 
     $stream = $client.OpenRead("https://github.cerner.com/api/v3/repos/Data-And-Integration/data-integration/contents/projects/CMS/appdata.json?ref=development")
-    echo("After openinig $stream")
+    echo("After opening stream")
     $reader = New-Object System.IO.StreamReader($stream)
     $stringcontent = $reader.ReadToEnd()
     $stringcontent
@@ -30,7 +30,7 @@
     $stream.close()
 
     if(!$Appprops){
-        Throw "Could not find the file named '${CredentialAssetName}'. Make sure you have created one in this GitHub location"
+        Throw "Could not find the file named appdata.json. Make sure you have created one in this GitHub location"
     }
 
     #Start Deploying Linked Services
